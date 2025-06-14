@@ -1,17 +1,17 @@
 import './App.css'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useState } from 'react'
-import { CreateItemForm } from './CreateItemForm'
+import { CreateItemForm } from '../CreateItemForm'
 import {
   changeTaskStatusAC,
   changeTaskTitleAC,
   createTaskAC, deleteTaskAC,
-} from './model/tasks-reducer'
+} from '../model/tasks-reducer'
 import {
   changeTodolistFilterAC,
   changeTodolistTitleAC, createTodolistAC, deleteTodolistAC,
-} from './model/todolists-reducer'
-import { TodolistItem } from './TodolistItem'
+} from '../model/todolists-reducer'
+import { TodolistItem } from '../TodolistItem'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
@@ -21,10 +21,12 @@ import Grid from '@mui/material/Grid2'
 import Paper from '@mui/material/Paper'
 import Switch from '@mui/material/Switch'
 import CssBaseline from '@mui/material/CssBaseline'
-import { containerSx } from './TodolistItem.styles'
-import { NavButton } from './NavButton'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from './app/store'
+import { containerSx } from '../TodolistItem.styles'
+import { NavButton } from '../NavButton'
+import { useAppDispatch } from '../common/hooks/useAppDispatch'
+import { useAppSelector } from '../common/hooks/useAppSelector'
+import { selectTodolists } from '../model/todolists-selector'
+import { selectTasks } from '../model/tasks-selector'
 
 export type Todolist = {
   id: string
@@ -45,10 +47,10 @@ export type TasksState = Record<string, Task[]>
 type ThemeMode = 'dark' | 'light'
 
 export const App = () => {
-  const todolists = useSelector<RootState, Todolist[]>(state => state.todolists)
-  const tasks = useSelector<RootState, TasksState>(state => state.tasks)
+  const todolists = useAppSelector(selectTodolists)
+  const tasks = useAppSelector(selectTasks)
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const [themeMode, setThemeMode] = useState<ThemeMode>('dark')
 
@@ -74,7 +76,7 @@ export const App = () => {
   }
 
   const deleteTodolist = (todolistId: string) => {
-    dispatch(deleteTodolistAC(todolistId))
+    dispatch(deleteTodolistAC({id: todolistId}))
   }
 
   const changeTodolistTitle = (todolistId: string, title: string) => {
