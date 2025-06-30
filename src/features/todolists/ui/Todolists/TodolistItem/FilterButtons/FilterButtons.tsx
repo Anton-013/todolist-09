@@ -1,9 +1,9 @@
 import Box from "@mui/material/Box"
 import Button from '@mui/material/Button'
-import { useAppDispatch } from "./common/hooks/useAppDispatch"
-import { changeTodolistFilterAC } from "./model/todolists-reducer"
-import { containerSx } from "./TodolistItem.styles"
-import { FilterValues, Todolist } from "./app/App"
+import { useAppDispatch } from "@/common/hooks/useAppDispatch"
+import { FilterValues, Todolist } from "@/app/App"
+import { changeTodolistFilterAC } from "@/features/todolists/model/todolists-reducer"
+import { containerSx } from "@/common/styles/container.styles"
 
 type Props = {
   todolist: Todolist

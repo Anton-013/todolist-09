@@ -1,9 +1,9 @@
 import { useAppDispatch } from "@/common/hooks/useAppDispatch"
-import { CreateItemForm } from "@/CreateItemForm"
+import { CreateItemForm } from "@/common/components/CreateItemForm/CreateItemForm"
 import Container from "@mui/material/Container"
 import Grid from "@mui/material/Grid2"
-import { createTodolistAC } from "@/model/todolists-reducer"
-import { Todolists } from "@/Todolists"
+import { Todolists } from "@/features/todolists/ui/Todolists/Todolists"
+import { createTodolistAC } from "@/features/todolists/model/todolists-reducer"
 
 export const Main = () => {
 

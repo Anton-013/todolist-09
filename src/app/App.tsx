@@ -1,10 +1,10 @@
-import './App.css'
+import styles from './App.module.css'
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import { useAppSelector } from '@/common/hooks/useAppSelector'
 import { selectThemeMode } from './app-selector'
 import { getTheme } from '@/common/theme/theme'
-import { Header } from '@/Header'
+import { Header } from '@/common/components/Header/Header'
 import { Main } from './Main'
 
 export type Todolist = {
@@ -30,7 +30,7 @@ export const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className={'app'}>
+      <div className={styles.app}>
         <CssBaseline />
         <Header />
         <Main />
